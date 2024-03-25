@@ -16,11 +16,11 @@ class Astralyzer:
         self.data = pd.read_csv(self.filepath)
         
     def _assign_col(self):
-        date_time_str = [f'{self.data.iloc[i]["Date"]}, {self.data.iloc[i]["Time"]}' for i in range(len(self.data))]
         column_names = ['Date', 'Time', 'Open', 'High', 'Low', 'Close', 'Volume']
-        
-        self.data['DateTime'] = date_time_str
         self.data.columns = column_names
+        
+        date_time_str = [f'{self.data.iloc[i]["Date"]}, {self.data.iloc[i]["Time"]}' for i in range(len(self.data))]
+        self.data['DateTime'] = date_time_str
         
     def calculate_volatility_stats(self):
         vol_mean = np.mean(self.data["Volatility"])
