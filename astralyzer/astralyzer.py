@@ -38,7 +38,7 @@ class Astralyzer:
         return vol_mean, vol_std, vol_1std_plus, vol_2std_plus, vol_3std_plus, vol_1std_minus, vol_2std_minus, vol_3std_minus
 
     def visualize_volatility(self):
-        vol_mean, vol_std, vol_1std_plus, vol_2std_plus, vol_3std_plus, vol_1std_minus, vol_2std_minus, vol_3std_minus = self.calculate_volatility_stats(self.data)
+        vol_mean, vol_std, vol_1std_plus, vol_2std_plus, vol_3std_plus, vol_1std_minus, vol_2std_minus, vol_3std_minus = self.calculate_volatility_stats()
     
         sns.histplot(data=self.data, bins=60, x="Volatility", kde=True)
         plt.title(f'{self.product_name} Volatility {self.data.iloc[0]["Date"]} - {self.data.iloc[-1]["Date"]}')
