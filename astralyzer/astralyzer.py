@@ -22,6 +22,9 @@ class Astralyzer:
         date_time_str = [f'{self.data.iloc[i]["Date"]}, {self.data.iloc[i]["Time"]}' for i in range(len(self.data))]
         self.data['DateTime'] = date_time_str
         
+        vol = [((self.data.iloc[i]['High'] - self.data.iloc[i]['Low']) / self.data.iloc[i]['Open']) for i in range(len(self.data))]
+        self.data['Volatility'] = vol
+        
     def calculate_volatility_stats(self):
         vol_mean = np.mean(self.data["Volatility"])
         vol_std = np.std(self.data["Volatility"])
