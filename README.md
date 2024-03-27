@@ -1,6 +1,6 @@
 # Astralyzer
 
-Astralyzer is analyzer tool for visualizing and analyzing data.
+Astralyzer is analyzer tool for visualizing and analyzing data exported from MetaTrader.
 
 ## Installation
 
