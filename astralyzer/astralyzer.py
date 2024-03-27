@@ -77,7 +77,7 @@ class Astralyzer:
         plt.axvline(std_minus_2, color='Coral', linewidth=2, linestyle="--", label="2SD Lower")
         plt.axvline(std_minus_3, color='Red', linewidth=2, linestyle="--", label="3SD Lower")
         
-        text = f"Mean: {mean*100:.7f} %\n\n1SD Upper: {std_plus_1*100:.7f} %\n2SD Upper: {std_plus_2*100:.7f} %\n3SD Upper: {std_plus_3*100:.7f} %\n\n1SD Lower: {std_minus_1*100:.7f} %\n2SD Lower: {std_minus_2*100:.7f} %\n3SD Lower: {std_minus_3*100:.7f} %"
+        text = f"Mean: {mean:.7f} \n\n1SD Upper: {std_plus_1:.7f} \n2SD Upper: {std_plus_2:.7f} \n3SD Upper: {std_plus_3:.7f} \n\n1SD Lower: {std_minus_1:.7f} \n2SD Lower: {std_minus_2:.7f} \n3SD Lower: {std_minus_3:.7f}"
         plt.text(0.95, 0.05, text, fontsize=10, transform=plt.gca().transAxes,
              verticalalignment='bottom', horizontalalignment='right', bbox=dict(facecolor='white', alpha=0.5))
     
