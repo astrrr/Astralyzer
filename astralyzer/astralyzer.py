@@ -38,7 +38,7 @@ class Astralyzer:
         return mean, std, std_plus_1, std_plus_2, std_plus_3, std_minus_1, std_minus_2, std_minus_3
 
     def visualize_volatility(self, width=8, height=6):
-        mean, std, std_plus_1, std_plus_2, std_plus_3, std_minus_1, std_minus_2, std_minus_3 = self.calculate_volatility_stats(column="Volatility")
+        mean, std, std_plus_1, std_plus_2, std_plus_3, std_minus_1, std_minus_2, std_minus_3 = self.calculate_stats(column="Volatility")
     
         plt.figure(figsize=(width, height))
     
@@ -62,7 +62,7 @@ class Astralyzer:
 
     def visualize_close(self, width=8, height=6):
             
-        mean, std, std_plus_1, std_plus_2, std_plus_3, std_minus_1, std_minus_2, std_minus_3 = self.calculate_volatility_stats(column="Close")
+        mean, std, std_plus_1, std_plus_2, std_plus_3, std_minus_1, std_minus_2, std_minus_3 = self.calculate_stats(column="Close")
     
         plt.figure(figsize=(width, height))
     
