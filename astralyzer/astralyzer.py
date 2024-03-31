@@ -37,6 +37,18 @@ class Astralyzer:
         
         return mean, std, std_plus_1, std_plus_2, std_plus_3, std_minus_1, std_minus_2, std_minus_3
 
+    def separate_df_by_year(self):
+          
+        self.data['Date'] = pd.to_datetime(self.data['Date'])
+        
+        year_dfs = {}
+        for year in self.data['Date'].dt.year.unique():
+            year_df = self.data[self.data['Date'].dt.year == year].copy()
+            year_df.reset_index(drop=True, inplace=True)  # Reindex to start from 0
+            year_dfs[year] = year_df
+    
+        return year_dfs
+
     def visualize_volatility(self, width=8, height=6):
         mean, std, std_plus_1, std_plus_2, std_plus_3, std_minus_1, std_minus_2, std_minus_3 = self.calculate_stats(column="Volatility")
     
