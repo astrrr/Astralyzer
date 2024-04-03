@@ -92,3 +92,22 @@ class Astralyzer:
     
         plt.legend()
         plt.show()
+        
+    def visualize_close_each_year(self, width=15, height=6, bins=30, kde=False):
+        df_years = self.separate_df_by_year()
+        colors = [
+            'blue', 'red', 'green', 'orange', 'purple', 'yellow', 'cyan', 'magenta',
+            'lime', 'pink', 'teal', 'lavender', 'brown', 'beige', 'maroon', 'olive',
+            'coral', 'navy', 'silver', 'gold', 'indigo', 'turquoise', 'darkgreen',
+            'skyblue', 'tan', 'orchid', 'salmon', 'violet', 'khaki', 'crimson'
+        ]
+        
+        plt.figure(figsize=(width, height))
+        for i, year in df_years.keys():
+            _df = df_years[year]
+            mean = np.mean(_df['Close'])
+            
+            sns.histplot(data=_df, bins=bins, x="Close", kde=kde, color=colors[i % len(colors)], label=year)
+            plt.axvline(mean, color='Green', linewidth=2, linestyle="--", label=f'Mean-{year}:  {mean:.5f}')
+        plt.legend()
+        plt.show()
