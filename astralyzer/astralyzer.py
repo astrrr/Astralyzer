@@ -103,6 +103,7 @@ class Astralyzer:
         ]
         
         plt.figure(figsize=(width, height))
+        plt.title(f'{self.product_name} Close Histogram {self.data.iloc[0]["Date"]} - {self.data.iloc[-1]["Date"]}')
         for i, year in enumerate(df_years):
             _df = df_years[year]
             mean = np.mean(_df['Close'])
