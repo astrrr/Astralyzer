@@ -19,11 +19,9 @@ class Astralyzer:
         column_names = ['Date', 'Time', 'Open', 'High', 'Low', 'Close', 'Volume']
         self.data.columns = column_names
         
-        date_time_str = [f'{self.data.iloc[i]["Date"]}, {self.data.iloc[i]["Time"]}' for i in range(len(self.data))]
-        self.data['DateTime'] = date_time_str
+        self.data['DateTime'] = pd.to_datetime(self.data['Date'] + ' ' + self.data['Time'])
         
-        vol = [((self.data.iloc[i]['High'] - self.data.iloc[i]['Low']) / self.data.iloc[i]['Open']) for i in range(len(self.data))]
-        self.data['Volatility'] = vol
+        self.data['Volatility'] = (self.data['High'] - self.data['Low']) / self.data['Open']
         
     def calculate_stats(self, column):
         mean = np.mean(self.data[column])
@@ -38,7 +36,6 @@ class Astralyzer:
         return mean, std, std_plus_1, std_plus_2, std_plus_3, std_minus_1, std_minus_2, std_minus_3
 
     def separate_df_by_year(self):
-          
         self.data['Date'] = pd.to_datetime(self.data['Date'])
         
         year_dfs = {}
