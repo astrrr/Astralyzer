@@ -103,7 +103,7 @@ class Astralyzer:
         ]
         
         plt.figure(figsize=(width, height))
-        for i, year in df_years.keys():
+        for i, year in enumerate(df_years):
             _df = df_years[year]
             mean = np.mean(_df['Close'])
             
