@@ -93,7 +93,7 @@ class Astralyzer:
         plt.legend()
         plt.show()
         
-    def visualize_close_each_year(self, width=15, height=6, bins=30, kde=False):
+    def visualize_close_each_year(self, width=15, height=6, bins=30, kde=False, one_chart_per_year=False):
         df_years = self.separate_df_by_year()
         colors = [
             'blue', 'red', 'green', 'orange', 'purple', 'yellow', 'cyan', 'magenta',
@@ -102,13 +102,26 @@ class Astralyzer:
             'skyblue', 'tan', 'orchid', 'salmon', 'violet', 'khaki', 'crimson'
         ]
         
-        plt.figure(figsize=(width, height))
-        plt.title(f'{self.product_name} Close Histogram {self.data.iloc[0]["Date"]} - {self.data.iloc[-1]["Date"]}')
-        for i, year in enumerate(df_years):
-            _df = df_years[year]
-            mean = np.mean(_df['Close'])
+        if one_chart_per_year:
+            for i, year in enumerate(df_years):
+                plt.figure(figsize=(width, height))
+                plt.title(f'{self.product_name} Close Histogram {self.data.iloc[0]["Date"]} - {self.data.iloc[-1]["Date"]}')
+                _df = df_years[year]
+                mean = np.mean(_df['Close'])
+                
+                sns.histplot(data=_df, bins=bins, x="Close", kde=kde, color=colors[i % len(colors)], label=year)
+                plt.axvline(mean, color=colors[i % len(colors)], linewidth=2, linestyle="--", label=f'Mean-{year}:  {mean:.5f}')
+                plt.legend()
+                plt.show()
             
-            sns.histplot(data=_df, bins=bins, x="Close", kde=kde, color=colors[i % len(colors)], label=year)
-            plt.axvline(mean, color='Green', linewidth=2, linestyle="--", label=f'Mean-{year}:  {mean:.5f}')
-        plt.legend()
-        plt.show()
+        else:
+            plt.figure(figsize=(width, height))
+            plt.title(f'{self.product_name} Close Histogram {self.data.iloc[0]["Date"]} - {self.data.iloc[-1]["Date"]}')
+            for i, year in enumerate(df_years):
+                _df = df_years[year]
+                mean = np.mean(_df['Close'])
+                
+                sns.histplot(data=_df, bins=bins, x="Close", kde=kde, color=colors[i % len(colors)], label=year)
+                plt.axvline(mean, color=colors[i % len(colors)], linewidth=2, linestyle="--", label=f'Mean-{year}:  {mean:.5f}')
+            plt.legend()
+            plt.show()
