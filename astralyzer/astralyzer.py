@@ -105,8 +105,8 @@ class Astralyzer:
         if one_chart_per_year:
             for i, year in enumerate(df_years):
                 plt.figure(figsize=(width, height))
-                plt.title(f'{self.product_name} Close Histogram {self.data.iloc[0]["Date"]} - {self.data.iloc[-1]["Date"]}')
                 _df = df_years[year]
+                plt.title(f'{self.product_name} {year} Close Histogram {_df.iloc[0]["Date"]} - {_df.iloc[-1]["Date"]}')
                 mean = np.mean(_df['Close'])
                 
                 sns.histplot(data=_df, bins=bins, x="Close", kde=kde, color=colors[i % len(colors)], label=year)
