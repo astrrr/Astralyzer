@@ -125,3 +125,36 @@ class Astralyzer:
                 plt.axvline(mean, color=colors[i % len(colors)], linewidth=2, linestyle="--", label=f'Mean-{year}:  {mean:.5f}')
             plt.legend()
             plt.show()
+            
+    def visualize_volatility_each_year(self, width=15, height=6, bins=30, kde=False, one_chart_per_year=False):
+        df_years = self.separate_df_by_year()
+        colors = [
+            'blue', 'red', 'green', 'orange', 'purple', 'yellow', 'cyan', 'magenta',
+            'lime', 'pink', 'teal', 'lavender', 'brown', 'beige', 'maroon', 'olive',
+            'coral', 'navy', 'silver', 'gold', 'indigo', 'turquoise', 'darkgreen',
+            'skyblue', 'tan', 'orchid', 'salmon', 'violet', 'khaki', 'crimson'
+        ]
+        
+        if one_chart_per_year:
+            for i, year in enumerate(df_years):
+                plt.figure(figsize=(width, height))
+                _df = df_years[year]
+                plt.title(f'{self.product_name} {year} Volatility Histogram {_df.iloc[0]["Date"]} - {_df.iloc[-1]["Date"]}')
+                mean = np.mean(_df['Volatility'])
+                
+                sns.histplot(data=_df, bins=bins, x="Volatility", kde=kde, color=colors[i % len(colors)], label=year)
+                plt.axvline(mean, color=colors[i % len(colors)], linewidth=2, linestyle="--", label=f'Mean-{year}:  {mean:.5f}')
+                plt.legend()
+                plt.show()
+            
+        else:
+            plt.figure(figsize=(width, height))
+            plt.title(f'{self.product_name} Volatility Histogram {self.data.iloc[0]["Date"]} - {self.data.iloc[-1]["Date"]}')
+            for i, year in enumerate(df_years):
+                _df = df_years[year]
+                mean = np.mean(_df['Volatility'])
+                
+                sns.histplot(data=_df, bins=bins, x="Volatility", kde=kde, color=colors[i % len(colors)], label=year)
+                plt.axvline(mean, color=colors[i % len(colors)], linewidth=2, linestyle="--", label=f'Mean-{year}:  {mean:.5f}')
+            plt.legend()
+            plt.show()
