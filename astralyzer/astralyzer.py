@@ -103,7 +103,7 @@ class Astralyzer:
         ]
         
         if one_chart_per_year:
-            for i, year in enumerate(df_years):
+            for i, year in enumerate(sorted(df_years)):
                 plt.figure(figsize=(width, height))
                 _df = df_years[year]
                 plt.title(f'{self.product_name} {year} Close Histogram {_df.iloc[0]["Date"]} - {_df.iloc[-1]["Date"]}')
@@ -117,7 +117,7 @@ class Astralyzer:
         else:
             plt.figure(figsize=(width, height))
             plt.title(f'{self.product_name} Close Histogram {self.data.iloc[0]["Date"]} - {self.data.iloc[-1]["Date"]}')
-            for i, year in enumerate(df_years):
+            for i, year in enumerate(sorted(df_years)):
                 _df = df_years[year]
                 mean = np.mean(_df['Close'])
                 
@@ -136,7 +136,7 @@ class Astralyzer:
         ]
         
         if one_chart_per_year:
-            for i, year in enumerate(df_years):
+            for i, year in enumerate(sorted(df_years)):
                 plt.figure(figsize=(width, height))
                 _df = df_years[year]
                 plt.title(f'{self.product_name} {year} Volatility Histogram {_df.iloc[0]["Date"]} - {_df.iloc[-1]["Date"]}')
@@ -150,7 +150,7 @@ class Astralyzer:
         else:
             plt.figure(figsize=(width, height))
             plt.title(f'{self.product_name} Volatility Histogram {self.data.iloc[0]["Date"]} - {self.data.iloc[-1]["Date"]}')
-            for i, year in enumerate(df_years):
+            for i, year in enumerate(sorted(df_years)):
                 _df = df_years[year]
                 mean = np.mean(_df['Volatility'])
                 
