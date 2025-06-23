@@ -1,6 +1,6 @@
 # Astralyzer
 
-**Astralyzer** is a Python-based tool designed for analyzing financial data from CSV files that exported from MetaTrader. It provides various functionalities for data processing, statistical analysis, and visualization of metrics such as volatility and closing prices. 
+**Astralyzer** is a Python-based tool designed for analyzing financial data from CSV files exported from MetaTrader. It provides various functionalities for data processing, statistical analysis, and visualization of metrics such as volatility and closing prices.
 
 ## Features
 - Load and preprocess financial data
